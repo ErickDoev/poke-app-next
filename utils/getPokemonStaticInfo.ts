@@ -10,7 +10,8 @@ const getPokemonStaticInfo = async (params: string) => {
         weight: data.weight,
         height: data.height,
         stats: data.stats,
-        sprites: data.sprites
+        sprites: data.sprites,
+        id: data.id
     }
 }
 

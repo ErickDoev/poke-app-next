@@ -15,7 +15,7 @@ export const PokemonByNamePage: FC<any> = ({pokemon}) => {
     const [isInFavorites, setIsInfavorites] = useState(false);
     
     const { name, sprites, id } = pokemon;
-
+  
     const onToogleFavorite = () => {
       localFavorites.toogleFavorite(id);
       setIsInfavorites(!isInFavorites);
