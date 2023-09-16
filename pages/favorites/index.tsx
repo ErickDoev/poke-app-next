@@ -23,6 +23,7 @@ const FavoritesPage = () => {
               <h1>No hay favoritos</h1>
               <Image
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg"
+                alt="img"
                 width={150}
                 height={150}/>
             </>
