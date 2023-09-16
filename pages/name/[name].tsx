@@ -35,7 +35,7 @@ export const PokemonByNamePage: FC<any> = ({pokemon}) => {
 
   useEffect(() => {
     setIsInfavorites(localFavorites.existInFavorites(id));
-  }, []);
+  }, [id]);
     
   return (
     <Layout>
@@ -44,6 +44,7 @@ export const PokemonByNamePage: FC<any> = ({pokemon}) => {
           <CardBody>
               <Image 
                 src={sprites?.other?.dream_world?.front_default}
+                alt="pokemon"
                 width={150}
                 height={140}/>
           </CardBody>
@@ -59,18 +60,22 @@ export const PokemonByNamePage: FC<any> = ({pokemon}) => {
           <CardBody className="flex flex-row justify-center">
               <Image 
                 src={sprites.front_default}
+                alt="sprites"
                 width={100}
                 height={100}/>
               <Image 
                 src={sprites.back_default}
+                alt="sprites"
                 width={100}
                 height={100}/>
               <Image 
                 src={sprites.front_shiny}
+                alt="sprites"
                 width={100}
                 height={100}/>
               <Image 
                 src={sprites.back_shiny}
+                alt="sprites"
                 width={100}
                 height={100}/>
           </CardBody>

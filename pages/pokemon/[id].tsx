@@ -37,7 +37,7 @@ const PokemonInfoPage: NextPage<Props> = ({ pokemon }) => {
 
   useEffect(() => {
     setIsInfavorites(localFavorites.existInFavorites(pokemon.id));
-  }, []);
+  }, [pokemon.id]);
     
   return (
     <Layout>
@@ -46,6 +46,7 @@ const PokemonInfoPage: NextPage<Props> = ({ pokemon }) => {
           <CardBody>
               <Image 
                 src={sprites?.other?.dream_world?.front_default}
+                alt="pokemon"
                 width={150}
                 height={140}/>
           </CardBody>
@@ -61,18 +62,22 @@ const PokemonInfoPage: NextPage<Props> = ({ pokemon }) => {
           <CardBody className="flex flex-row justify-center">
               <Image 
                 src={pokemon.sprites.front_default}
+                alt="sprites"
                 width={100}
                 height={100}/>
               <Image 
                 src={pokemon.sprites.back_default}
+                alt="sprites"
                 width={100}
                 height={100}/>
               <Image 
                 src={pokemon.sprites.front_shiny}
+                alt="sprites"
                 width={100}
                 height={100}/>
               <Image 
                 src={pokemon.sprites.back_shiny}
+                alt="sprites"
                 width={100}
                 height={100}/>
           </CardBody>
@@ -88,10 +93,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { id } = params as { id:string };
 
+  const pokemon = await getPokemonStaticInfo(id);
+
+  if(!pokemon){
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
     return {
       props: {
-        pokemon: await getPokemonStaticInfo(id)
-      }
+        pokemon
+      },
+      revalidate: 86400,
     }
 }
 
@@ -107,7 +123,7 @@ export const getStaticPaths: GetStaticPaths = (async (ctx) => {
                 id
             }
         })),
-        fallback: false
+        fallback: 'blocking'
     }
 }) satisfies GetStaticPaths;
   

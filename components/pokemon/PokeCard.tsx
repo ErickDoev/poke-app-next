@@ -21,6 +21,7 @@ export const PokeCard: NextPage<SmallPokemon> = ({id, name, img}) => {
             <CardBody>
                 <Image 
                   src={img}
+                  alt="img"
                   width='100%'
                   height={140}/>
             </CardBody>
